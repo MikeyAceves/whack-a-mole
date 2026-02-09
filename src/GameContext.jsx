@@ -5,7 +5,6 @@ const TIME_LIMIT = 15;
 
 const GameContext = createContext();
 
-/** Game logic for Whack-a-Mole */
 export function GameProvider({ children }) {
   const [field, setField] = useState(makeField());
   const [score, setScore] = useState(0);
@@ -15,18 +14,15 @@ export function GameProvider({ children }) {
   const [time, setTime] = useState(TIME_LIMIT);
   const timer = useRef();
 
-  // Stop the game when timer reaches 0
   useEffect(() => {
     if (time <= 0) stop();
   }, [time]);
 
-  /** Whacking a mole means making a new field and increasing the score */
   const whack = () => {
     setField(makeField(field));
     setScore(score + 1);
   };
 
-  /** Starts a new game by resetting the score and field */
   const start = () => {
     setScore(0);
     setField(makeField());
@@ -35,10 +31,6 @@ export function GameProvider({ children }) {
     timer.current = setInterval(() => setTime((time) => time - 1), 1000);
   };
 
-  // Why make this a separate function instead of letting components use `setPlaying`?
-  // This allows us to add more game-stopping logic in the future in this one place
-  // instead of having to rewrite all the components that would have used `setPlaying`.
-  // ... such as updating the high scores!
   const stop = () => {
     setPlaying(false);
 
@@ -68,9 +60,7 @@ export function useGame() {
   return context;
 }
 
-/** @returns {boolean[]} false = hole, true = mole */
 function makeField(field = Array(NUM_HOLES).fill(false)) {
-  // Create an array containing the indexes of all holes
   const holes = field.reduce((holes, isMole, i) => {
     if (!isMole) holes.push(i);
     return holes;
