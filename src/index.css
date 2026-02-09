@@ -1,3 +1,67 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+button {
+  padding: 0.25rem;
+  background: white;
+}
+
+button:hover {
+  cursor: pointer;
+  background: #eee;
+}
+
+#root {
+  max-width: 35rem;
+  padding: 1rem;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.welcome {
+  display: grid;
+  gap: 1ch;
+  width: 30ch;
+  margin: 0 auto;
+  margin-bottom: 1rem;
+}
+
+.highscores ul {
+  list-style: none;
+}
+
+.scoreboard,
+.scoreboard button {
+  font-family: monospace;
+}
+
+.scoreboard {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 1rem;
+  gap: 1rem;
+}
+
+.scoreboard > * {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+}
+
+.field {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 7rem;
+  gap: 1rem;
+  padding: 1rem;
+  max-width: 30rem;
+  margin: 0 auto;
+}
 
 .hole {
   background: url("/hole.png") no-repeat center/contain;
@@ -7,3 +71,6 @@
   background-image: url("/mole.png");
 }
 
+.mole:hover {
+  cursor: pointer;
+}
